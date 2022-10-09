@@ -30,10 +30,10 @@ class MyApp extends StatelessWidget {
         ),
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.pink).copyWith(secondary: Colors.amber),
       ),
-      home: const CategoriesPage(),
+      // home: const CategoriesPage(),
       routes: {
-        '/categories': (ctx) => CategoriesPage(),
-        '/category-meals': (ctx) => CategoryMealsPage(),
+        '/': (ctx) => CategoriesPage(),
+        CategoryMealsPage.routeName: (ctx) => CategoryMealsPage(),
       },
     );
   }
