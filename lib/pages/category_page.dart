@@ -21,7 +21,7 @@ class CategoriesPage extends StatelessWidget {
           mainAxisSpacing: 20,
         ),
         children: categories.map((category) {
-          return CategoryItem(title: category.title, color: category.color);
+          return CategoryItem(id: category.id, title: category.title, color: category.color);
         }).toList(),
       ),
     );
