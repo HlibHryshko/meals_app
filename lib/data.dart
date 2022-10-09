@@ -56,7 +56,7 @@ const categories = [
   ),
 ];
 
-const recipes = [
+const meals = [
   Meal(
     id: 'm1',
     categories: [
