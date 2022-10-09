@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals/pages/category_meals_page.dart';
 import 'package:meals/pages/category_page.dart';
 
 void main() {
@@ -30,6 +31,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.pink).copyWith(secondary: Colors.amber),
       ),
       home: const CategoriesPage(),
+      routes: {
+        '/categories': (ctx) => CategoriesPage(),
+        '/category-meals': (ctx) => CategoryMealsPage(),
+      },
     );
   }
 }

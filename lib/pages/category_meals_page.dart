@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CategoryMealsPage extends StatelessWidget {
-  const CategoryMealsPage({Key? key, required this.categoryId, required this.categoryTitle}) : super(key: key);
-
-  final String categoryId;
-  final String categoryTitle;
+  const CategoryMealsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final routeArguments = ModalRoute.of(context)!.settings.arguments as Map<String, String>;
+
+    final categoryId = routeArguments['id']!;
+    final categoryTitle = routeArguments['title']!;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
