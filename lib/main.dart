@@ -36,6 +36,21 @@ class MyApp extends StatelessWidget {
         CategoryMealsPage.routeName: (ctx) => CategoryMealsPage(),
         MealDetailPage.routeName: (ctx) => MealDetailPage(),
       },
+      // for the routes not in the routing table
+      // onGenerateRoute: (settings) {
+      //   if (settings.name == '/meal-detail') {
+      //     return ...;
+      //   } else if (settings.name == '/something-else') {
+      //     return ...;
+      //   }
+      //   return MaterialPageRoute(builder: (ctx) => CategoriesPage(),);
+      // },
+
+      // executed as the last function before an error
+      // onUnknownRoute: (settings) {
+      //   // could be 'we could not find this page'
+      //   return MaterialPageRoute(builder: (ctx) => CategoriesPage(),);
+      // },
     );
   }
 }
