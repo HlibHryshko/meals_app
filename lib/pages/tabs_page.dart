@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals/pages/category_page.dart';
 import 'package:meals/pages/favorites_page.dart';
+import 'package:meals/widgets/main_drawer.dart';
 
 
 /*
@@ -82,8 +83,7 @@ class _TabsPageState extends State<TabsPage> {
           _pages[_selectedPageIndex]['title'] as String,
         ),
       ),
-      drawer: Drawer(
-      ),
+      drawer: MainDrawer(),
       body: _pages[_selectedPageIndex]['page'] as Widget,
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
