@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meals/pages/category_meals_page.dart';
 import 'package:meals/pages/category_page.dart';
 import 'package:meals/pages/meal_details_page.dart';
+import 'package:meals/pages/tabs_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.pink).copyWith(secondary: Colors.amber),
       ),
       routes: {
-        '/': (ctx) => CategoriesPage(),
+        '/': (ctx) => TabsPage(),
         CategoryMealsPage.routeName: (ctx) => CategoryMealsPage(),
         MealDetailPage.routeName: (ctx) => MealDetailPage(),
       },
