@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals/pages/category_meals_page.dart';
 import 'package:meals/pages/category_page.dart';
+import 'package:meals/pages/filters_page.dart';
 import 'package:meals/pages/meal_details_page.dart';
 import 'package:meals/pages/tabs_page.dart';
 
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         // '/': (ctx) => CategoriesPage(),
         CategoryMealsPage.routeName: (ctx) => CategoryMealsPage(),
         MealDetailPage.routeName: (ctx) => MealDetailPage(),
+        FiltersPage.routeName: (ctx) => FiltersPage(),
       },
       // for the routes not in the routing table
       // onGenerateRoute: (settings) {
