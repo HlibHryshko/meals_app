@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:meals/widgets/meal_item.dart';
 
-import '../data/data.dart';
 import '../models/meal.dart';
 
 class CategoryMealsPage extends StatefulWidget {
   static const routeName = '/category-meals';
 
-  const CategoryMealsPage({Key? key}) : super(key: key);
+  final List<Meal> availableMeals;
+
+  const CategoryMealsPage({
+    Key? key,
+    required this.availableMeals,
+  }) : super(key: key);
 
   @override
   State<CategoryMealsPage> createState() => _CategoryMealsPageState();
@@ -32,7 +36,7 @@ class _CategoryMealsPageState extends State<CategoryMealsPage> {
 
       final categoryId = routeArguments['id']!;
       categoryTitle = routeArguments['title']!;
-      displayedMeals = meals.where((meal) {
+      displayedMeals = widget.availableMeals.where((meal) {
         return meal.categories.contains(categoryId);
       }).toList();
       _loadedInitData = true;

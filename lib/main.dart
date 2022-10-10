@@ -1,16 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:meals/data/data.dart';
 import 'package:meals/pages/category_meals_page.dart';
-import 'package:meals/pages/category_page.dart';
 import 'package:meals/pages/filters_page.dart';
 import 'package:meals/pages/meal_details_page.dart';
 import 'package:meals/pages/tabs_page.dart';
+
+import 'models/meal.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Map<String, bool> _filters = {
+    'gluten': false,
+    'lactose': false,
+    'vegetarian': false,
+    'vegan': false
+  };
+
+  List<Meal> _availableMeals = meals;
+
+  void _setFilters(Map<String, bool> filterData) {
+    setState(() {
+      _filters = filterData;
+
+      _availableMeals = meals.where((meal){
+        if (_filters['gluten']! && !meal.isGlutenFree) {
+          return false;
+        }
+        if (_filters['lactose']! && !meal.isLactoseFree) {
+          return false;
+        }
+        if (_filters['vegetarian']! && !meal.isVegetarian) {
+          return false;
+        }
+        if (_filters['vegan']! && !meal.isVegan) {
+          return false;
+        }
+        return true;
+      }).toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +77,9 @@ class MyApp extends StatelessWidget {
         // used for bottom navigation
         '/': (ctx) => TabsPage(),
         // '/': (ctx) => CategoriesPage(),
-        CategoryMealsPage.routeName: (ctx) => CategoryMealsPage(),
+        CategoryMealsPage.routeName: (ctx) => CategoryMealsPage(availableMeals: _availableMeals),
         MealDetailPage.routeName: (ctx) => MealDetailPage(),
-        FiltersPage.routeName: (ctx) => FiltersPage(),
+        FiltersPage.routeName: (ctx) => FiltersPage(currentFilters: _filters, saveFilters: _setFilters),
       },
       // for the routes not in the routing table
       // onGenerateRoute: (settings) {
