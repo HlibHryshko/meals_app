@@ -82,6 +82,8 @@ class _TabsPageState extends State<TabsPage> {
           _pages[_selectedPageIndex]['title'] as String,
         ),
       ),
+      drawer: Drawer(
+      ),
       body: _pages[_selectedPageIndex]['page'] as Widget,
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
