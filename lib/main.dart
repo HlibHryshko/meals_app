@@ -35,7 +35,9 @@ class MyApp extends StatelessWidget {
       routes: {
         // used for top navigation
         // '/': (ctx) => TabsPage(),
-        '/': (ctx) => CategoriesPage(),
+        // used for bottom navigation
+        '/': (ctx) => TabsPage(),
+        // '/': (ctx) => CategoriesPage(),
         CategoryMealsPage.routeName: (ctx) => CategoryMealsPage(),
         MealDetailPage.routeName: (ctx) => MealDetailPage(),
       },
