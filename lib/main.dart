@@ -33,7 +33,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.pink).copyWith(secondary: Colors.amber),
       ),
       routes: {
-        '/': (ctx) => TabsPage(),
+        // used for top navigation
+        // '/': (ctx) => TabsPage(),
+        '/': (ctx) => CategoriesPage(),
         CategoryMealsPage.routeName: (ctx) => CategoryMealsPage(),
         MealDetailPage.routeName: (ctx) => MealDetailPage(),
       },
