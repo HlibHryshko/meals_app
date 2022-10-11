@@ -27,6 +27,7 @@ class _MyAppState extends State<MyApp> {
   };
 
   List<Meal> _availableMeals = meals;
+  List<Meal> _favoriteMeals = [];
 
   void _setFilters(Map<String, bool> filterData) {
     setState(() {
@@ -48,6 +49,24 @@ class _MyAppState extends State<MyApp> {
         return true;
       }).toList();
     });
+  }
+
+  void _toggleFavorite(String mealId) {
+    final existingIndex =
+      _favoriteMeals.indexWhere((meal) => meal.id == mealId);
+    if (existingIndex >= 0) {
+     setState(() {
+       _favoriteMeals.removeAt(existingIndex);
+     });
+    } else {
+      setState(() {
+        _favoriteMeals.add(meals.firstWhere((meal) => meal.id == mealId));
+      });
+    }
+  }
+
+  bool _isMealFavorite(String mealId) {
+    return _favoriteMeals.any((meal) => meal.id == mealId);
   }
 
   @override
@@ -75,10 +94,10 @@ class _MyAppState extends State<MyApp> {
         // used for top navigation
         // '/': (ctx) => TabsPage(),
         // used for bottom navigation
-        '/': (ctx) => TabsPage(),
+        '/': (ctx) => TabsPage(favoriteMeals: _favoriteMeals),
         // '/': (ctx) => CategoriesPage(),
         CategoryMealsPage.routeName: (ctx) => CategoryMealsPage(availableMeals: _availableMeals),
-        MealDetailPage.routeName: (ctx) => MealDetailPage(),
+        MealDetailPage.routeName: (ctx) => MealDetailPage(isMealFavorite: _isMealFavorite, toggleFavorite: _toggleFavorite),
         FiltersPage.routeName: (ctx) => FiltersPage(currentFilters: _filters, saveFilters: _setFilters),
       },
       // for the routes not in the routing table

@@ -3,6 +3,8 @@ import 'package:meals/pages/category_page.dart';
 import 'package:meals/pages/favorites_page.dart';
 import 'package:meals/widgets/main_drawer.dart';
 
+import '../models/meal.dart';
+
 
 /*
 tabsPage class for top Navigation
@@ -50,23 +52,19 @@ tabsPage class for top Navigation
 tabsPage for bottom navigation bar
  */
 class TabsPage extends StatefulWidget {
-  const TabsPage({Key? key}) : super(key: key);
+  final List<Meal> favoriteMeals;
+
+  const TabsPage({
+    Key? key,
+    required this.favoriteMeals,
+  }) : super(key: key);
 
   @override
   State<TabsPage> createState() => _TabsPageState();
 }
 
 class _TabsPageState extends State<TabsPage> {
-  final List<Map<String, Object>> _pages = [
-    {
-      'page': CategoriesPage(),
-      'title': 'Categories',
-    },
-    {
-      'page': FavoritesPage(),
-      'title': 'Favorites'
-    },
-  ];
+  List<Map<String, Object>>? _pages;
   int _selectedPageIndex = 0;
 
   void _selectPage(int index) {
@@ -76,15 +74,31 @@ class _TabsPageState extends State<TabsPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    _pages = [
+      {
+        'page': CategoriesPage(),
+        'title': 'Categories',
+      },
+      {
+        'page': FavoritesPage(favoriteMeals: widget.favoriteMeals),
+        'title': 'Favorites'
+      },
+    ];
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          _pages[_selectedPageIndex]['title'] as String,
+          _pages![_selectedPageIndex]['title'] as String,
         ),
       ),
       drawer: MainDrawer(),
-      body: _pages[_selectedPageIndex]['page'] as Widget,
+      body: _pages![_selectedPageIndex]['page'] as Widget,
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
         // not used for shifting type
