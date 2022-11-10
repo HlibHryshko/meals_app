@@ -45,11 +45,3 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-
-# ignoring .ios and .android folders
-ios/
-android/
-
-#ignoring some additional files
-.metadata
-analysis_options.yaml
